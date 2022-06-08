@@ -1,4 +1,4 @@
-const {
-	alertt
-} = require("./modules/helpers");
-alertt();
+import {
+	mod
+} from "./modules/module";
+mod();

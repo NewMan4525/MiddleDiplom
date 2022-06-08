@@ -1,6 +1,6 @@
 const alertt = () => {
 	alert('ok');
 };
-module.exports = {
+export {
 	alertt
 };
