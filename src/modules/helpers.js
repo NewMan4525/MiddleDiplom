@@ -1,6 +1,6 @@
-const alertt = () => {
-	alert('ok');
+const logger = () => {
+	console.log('helpers is ok');
 };
-export {
-	alertt
-};
+
+
+module.exports = logger;

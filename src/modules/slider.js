@@ -1,152 +1,126 @@
 'use strict';
 
-const slider = (slBlckCls, sldrsCls, dtsLstCls, slActive, dotActive) => {
-
-	const sliderBlock = document.querySelector(slBlckCls);
-	const sliders = document.querySelectorAll(sldrsCls);
-	const dotsList = document.querySelector(dtsLstCls);
+const logger = require('./helpers.js');
 
 
-	if (sliderBlock === null || sliders === null || dotsList === null) {
-		return;
-	} else {
-
-		let dots = [];
-		let currentSlide = 0;
-		let timeInterval;
-		let interval;
+const slider = (sliderBlockClass, sliderItemClass, arrowItemClass, amount) => {
 
 
-		//add dots
-		const forEacher = (array) => {
-			array.forEach((item, index) => {
-
-				let dot = document.createElement('li');
-				dot.classList.add('dot');
-				dotsList.append(dot);
-				dots = document.querySelectorAll('.dot');
-
-			});
-		};
-
-		const prevSlide = (elems, index, strClass) => {
-
-			elems[index].classList.remove(strClass);
-
-		};
-
-		const nextSlide = (elems, index, strClass) => {
-
-			elems[index].classList.add(strClass);
-
-		};
-
-		const autoSlide = () => {
-
-			prevSlide(sliders, currentSlide, slActive);
-			prevSlide(dots, currentSlide, dotActive);
-			currentSlide++;
-
-			if (currentSlide >= sliders.length) {
-				currentSlide = 0;
-			}
-
-			nextSlide(sliders, currentSlide, slActive);
-			nextSlide(dots, currentSlide, dotActive);
-
-		};
-
-		const startSlide = (time = 3000) => {
-
-			interval = setInterval(autoSlide, time);
-
-		};
-
-		const stopSlide = () => {
-
-			clearInterval(interval);
-		};
 
 
-		forEacher(sliders);
 
-		sliderBlock.addEventListener('click', (e) => {
+	try {
 
-			e.preventDefault();
 
-			if (!e.target.matches('.dot,.portfolio-btn')) {
+		class Primary {
+			constructor(sliderBlockClass) {
 
-				return;
+				//const slaiderblock = document.querySelector(`.${sliderBlockClass}`);
 
 			}
 
-			prevSlide(sliders, currentSlide, slActive);
-			prevSlide(dots, currentSlide, dotActive);
 
-			if (e.target.matches('#arrow-right')) {
 
-				currentSlide++;
 
-			} else if (e.target.matches('#arrow-left')) {
+			start() {
+				if (amount === 1) {
+					this.block.style.margin = '0 auto;';
+				}
+			}
+		}
 
-				currentSlide--;
 
-			} else if (e.target.classList.contains('dot')) {
+		class Sliders {
+			constructor(sliderItemClass) {
 
-				dots.forEach((item, index) => {
+				this.slaiderItem = document.querySelectorAll(`.${sliderItemClass}`);
+				this.subarray = [];
+				this.block = [];
 
-					if (e.target === item) {
 
-						currentSlide = index;
+			}
 
-					}
+			visibleItems() {
 
+				this.block = this.subarray[0];
+				this.slaiderItem.forEach((item) => {
+					item.style.display = 'none';
 				});
+				this.block.forEach((item) => {
+					item.style.display = 'block';
+				});
+				console.log(this.subarray);
 
 			}
 
-			if (currentSlide >= sliders.length) {
 
-				currentSlide = 0;
-			}
-			if (currentSlide < 0) {
 
-				currentSlide = sliders.length - 1;
 
-			}
+			subArrayItems(amount) {
 
-			nextSlide(sliders, currentSlide, slActive);
-			nextSlide(dots, currentSlide, dotActive);
+				let array = []; //массив, можно использовать массив объектов
+				this.slaiderItem.forEach((item, index) => {
+					array.push(item);
+				});
+				let size = amount; //размер подмассива
+				this.subarray = []; //массив в который будет выведен результат.
+				for (let i = 0; i < Math.ceil(array.length / size); i++) {
+					this.subarray[i] = array.slice((i * size), (i * size) + size);
+				}
 
-		});
-
-		sliderBlock.addEventListener('mouseenter', (e) => {
-
-			if (e.target.matches('.dot,.portfolio-btn')) {
-
-				stopSlide();
-
-				return;
 
 			}
 
-		}, true);
 
-		sliderBlock.addEventListener('mouseleave', (e) => {
+			start() {
 
-			if (e.target.matches('.dot,.portfolio-btn')) {
+				this.subArrayItems(amount);
+				this.visibleItems(this.subarray);
+			}
+		}
 
-				startSlide(timeInterval);
-
-				return;
+		class Arrows {
+			constructor(arrowItemClass) {
+				this.slaiderarrow = document.querySelectorAll(`.${arrowItemClass}>div`);
 
 			}
 
-		}, true);
 
-		startSlide(timeInterval);
+			slideLeft() {
+				console.log('left');
+			}
 
+			sliderRight() {
+				console.log('right');
+			}
+
+
+
+
+
+			start() {
+
+				this.slaiderarrow[0].addEventListener('click',
+					this.slideLeft);
+				this.slaiderarrow[1].addEventListener('click',
+					this.sliderRight);
+			}
+		}
+
+
+		// const primary = new Primary(sliderBlockClass);
+		const sliders = new Sliders(sliderItemClass);
+		const arrows = new Arrows(arrowItemClass);
+
+		// primary.start();
+		sliders.start();
+
+		arrows.start();
+
+	} catch (err) {
+		console.log('!!!!!slider error', err);
 	}
+
 
 };
 
