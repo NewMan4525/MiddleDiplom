@@ -11,32 +11,31 @@ const slider = (sliderBlockClass, sliderItemClass, arrowItemClass, amount) => {
 
 	try {
 
+		let currentAmount;
+
 
 		class Primary {
 			constructor(sliderBlockClass) {
 
-				//const slaiderblock = document.querySelector(`.${sliderBlockClass}`);
-
+				this.slaiderblock = document.querySelector(`.${sliderBlockClass}`);
+				console.log(sliderBlockClass);
+				console.log(this.slaiderblock);
 			}
-
-
-
 
 			start() {
-				if (amount === 1) {
-					this.block.style.margin = '0 auto;';
-				}
+
+				this.slaiderblock.style.justifyContent = 'center';
+
 			}
 		}
-
 
 		class Sliders {
 			constructor(sliderItemClass) {
 
 				this.slaiderItem = document.querySelectorAll(`.${sliderItemClass}`);
+
 				this.subarray = [];
 				this.block = [];
-
 
 			}
 
@@ -53,16 +52,13 @@ const slider = (sliderBlockClass, sliderItemClass, arrowItemClass, amount) => {
 
 			}
 
-
-
-
-			subArrayItems(amount) {
+			subArrayItems(currentAmount) {
 
 				let array = []; //массив, можно использовать массив объектов
-				this.slaiderItem.forEach((item, index) => {
+				this.slaiderItem.forEach((item) => {
 					array.push(item);
 				});
-				let size = amount; //размер подмассива
+				let size = currentAmount; //размер подмассива
 				this.subarray = []; //массив в который будет выведен результат.
 				for (let i = 0; i < Math.ceil(array.length / size); i++) {
 					this.subarray[i] = array.slice((i * size), (i * size) + size);
@@ -71,26 +67,29 @@ const slider = (sliderBlockClass, sliderItemClass, arrowItemClass, amount) => {
 
 			}
 
-
 			start() {
 
-				this.subArrayItems(amount);
+				this.subArrayItems(currentAmount);
 				this.visibleItems(this.subarray);
+
 			}
 		}
 
-		class Arrows {
+		class Arrows extends Sliders {
 			constructor(arrowItemClass) {
+				super();
 				this.slaiderarrow = document.querySelectorAll(`.${arrowItemClass}>div`);
 
 			}
 
 
 			slideLeft() {
+				this.block = this.subarray[(-1)];
 				console.log('left');
 			}
 
 			sliderRight() {
+				this.block = this.subarray[(+1)];
 				console.log('right');
 			}
 
@@ -108,14 +107,32 @@ const slider = (sliderBlockClass, sliderItemClass, arrowItemClass, amount) => {
 		}
 
 
-		// const primary = new Primary(sliderBlockClass);
+
+
+
+
+
+
+		const primary = new Primary(sliderBlockClass);
 		const sliders = new Sliders(sliderItemClass);
 		const arrows = new Arrows(arrowItemClass);
 
-		// primary.start();
-		sliders.start();
+		const launcher = () => {
+			if (screen.width < 576) {
+				currentAmount = 1;
+				sliders.start();
+			} else {
+				currentAmount = amount;
+				sliders.start();
+			}
 
+		};
+
+		primary.start();
+		window.addEventListener("resize", launcher);
+		launcher();
 		arrows.start();
+
 
 	} catch (err) {
 		console.log('!!!!!slider error', err);
