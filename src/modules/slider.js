@@ -167,7 +167,6 @@ const slider = (sliderBlockClass, sliderItemClass, arrowItemClass, amount) => {
 
 		};
 
-
 		const autoSlide = () => {
 			idInterval = setInterval(arrows.sliderRight, interval);
 
@@ -189,10 +188,6 @@ const slider = (sliderBlockClass, sliderItemClass, arrowItemClass, amount) => {
 		screenWidthWatcher();
 		arrows.start();
 		autoSlide();
-
-
-
-
 
 
 	} catch (err) {
