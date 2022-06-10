@@ -6,7 +6,7 @@ const {
 } = require('./helpers.js');
 
 
-const slider = (sliderBlockClass, sliderItemClass, arrowItemClass, amount) => {
+const slider = (paramObj) => {
 
 	try {
 		let idInterval;
@@ -22,34 +22,14 @@ const slider = (sliderBlockClass, sliderItemClass, arrowItemClass, amount) => {
 
 			}
 
-
-			listeners(whuElem) {
-
-				switch (whuElem) {
-					case arrows.slaiderarrow[0]:
-						whuElem.addEventListener('click',
-							arrows.slideLeft);
-						break;
-					case arrows.slaiderarrow[1]:
-						whuElem.addEventListener('click',
-							arrows.sliderRight);
-						break;
-
-				}
-				whuElem.addEventListener('mouseover', stopSlide);
-				whuElem.addEventListener('mouseout', autoSlide);
-			}
-
-
 			start() {
 
 				this.slaiderblock.style.justifyContent = 'center';
 
-
-				this.listeners(this.slaiderblock);
 			}
 
 		}
+
 
 		class Sliders extends Primary {
 			constructor(sliderItemClass) {
@@ -111,6 +91,7 @@ const slider = (sliderBlockClass, sliderItemClass, arrowItemClass, amount) => {
 			}
 		}
 
+
 		class Arrows extends Sliders {
 			constructor(arrowItemClass) {
 				super();
@@ -140,20 +121,43 @@ const slider = (sliderBlockClass, sliderItemClass, arrowItemClass, amount) => {
 				sliders.visibleItems(currentGroup);
 			}
 
-
-
-
 			start() {
-
-				primary.listeners(this.slaiderarrow[0]);
-				primary.listeners(this.slaiderarrow[1]);
-
-
-
-
 
 			}
 		}
+
+
+
+		class Eventer {
+			constructor() {}
+
+
+			clickersLogic(e) {
+
+				if (e.target.parentElement.classList.contains(paramObj.arrows[0])) {
+					arrows.sliderRight();
+				}
+				if (e.target.parentElement.classList.contains(paramObj.arrows[1])) {
+					arrows.slideLeft();
+				}
+			}
+
+
+			mouseoverWatcher() {
+
+				stopSlide();
+
+				primary.slaiderblock.addEventListener('mouseout', autoSlide);
+
+			}
+
+
+			start() {
+				primary.slaiderblock.addEventListener('mouseover', this.mouseoverWatcher);
+				primary.slaiderblock.addEventListener('click', this.clickersLogic);
+			}
+		}
+
 
 		const screenWidthWatcher = () => {
 
@@ -161,7 +165,7 @@ const slider = (sliderBlockClass, sliderItemClass, arrowItemClass, amount) => {
 				currentAmount = 1;
 				sliders.start();
 			} else {
-				currentAmount = amount;
+				currentAmount = paramObj.amountGroup;
 				sliders.start();
 			}
 
@@ -178,17 +182,17 @@ const slider = (sliderBlockClass, sliderItemClass, arrowItemClass, amount) => {
 		};
 
 
-		const primary = new Primary(sliderBlockClass);
-		const sliders = new Sliders(sliderItemClass);
-		const arrows = new Arrows(arrowItemClass);
-
+		const primary = new Primary(paramObj.parent);
+		const sliders = new Sliders(paramObj.items);
+		const arrows = new Arrows(paramObj.arrows);
+		const eventer = new Eventer(paramObj);
 
 		primary.start();
 		window.addEventListener("resize", debounce(screenWidthWatcher, 50));
 		screenWidthWatcher();
 		arrows.start();
 		autoSlide();
-
+		eventer.start();
 
 	} catch (err) {
 		console.log('!!!!!slider error', err);
