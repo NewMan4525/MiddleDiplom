@@ -23,8 +23,12 @@ class ModalOptions {
 
 	}
 }
+class ScrollerOptions {
+	constructor() {}
+}
 
-const beefisSlider = new SliderOptions(
+
+const beefisSliderParams = new SliderOptions(
 	'wrapp__benefits',
 	'benefits__item',
 	'benefits__arrow--left',
@@ -32,7 +36,7 @@ const beefisSlider = new SliderOptions(
 	'start',
 	3);
 
-const servicesSlider = new SliderOptions(
+const servicesSliderParams = new SliderOptions(
 	'wrapp__services',
 	'service__item',
 	'services__arrow--left',
@@ -57,10 +61,13 @@ const certificateParams = new ModalOptions(
 	'img-responsive',
 	'overlay');
 
+const scrollerParams = new ScrollerOptions();
+
 module.exports = {
-	beefisSlider: beefisSlider,
-	servicesSlider: servicesSlider,
+	beefisSliderParams: beefisSliderParams,
+	servicesSliderParams: servicesSliderParams,
 	callBackParams: callBackParams,
 	modalParams: modalParams,
-	certificateParams: certificateParams
+	certificateParams: certificateParams,
+	scrollerParams: scrollerParams
 };
