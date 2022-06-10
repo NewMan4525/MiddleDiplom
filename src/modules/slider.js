@@ -2,7 +2,9 @@
 
 const {
 	debounce,
-	animate
+	animate,
+	opacityFunctional
+
 } = require('./helpers.js');
 
 
@@ -47,24 +49,10 @@ const slider = (paramObj) => {
 
 				this.slaiderItem.forEach((item) => {
 					item.style.display = 'none';
-				});
-				this.block.forEach((item) => {
-					item.style.display = 'block';
-					item.style.opacity = '0';
-					animate({
-						duration: 500,
-						timing(timeFraction) {
-							return Math.pow(timeFraction, 1);
-						},
-						draw(progress) {
-
-							item.style.opacity = progress * 100 + '%';
-
-
-						}
-					});
 
 				});
+
+				opacityFunctional.openFunctional(this.block, 500);
 
 			}
 

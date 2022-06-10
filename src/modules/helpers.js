@@ -1,5 +1,60 @@
 'use strict';
 
+class OpacityFunctional {
+	constructor() {
+
+	}
+
+	openFunctional(opacityObjects, animateDuration) {
+
+		opacityObjects.forEach(item => {
+			item.style.display = 'block';
+			item.style.opacity = '0';
+		});
+
+		animate({
+			duration: animateDuration,
+			timing(timeFraction) {
+				return timeFraction;
+			},
+			draw(progress) {
+
+				opacityObjects.forEach(item => {
+					item.style.opacity = progress * 100 + '%';
+					item.style.opacity = progress * 100 + '%';
+				});
+
+			}
+		});
+
+	}
+
+	clsFunctional(opacityObjects, animateDuration) {
+		animate({
+			duration: animateDuration,
+			timing(timeFraction) {
+				return timeFraction;
+			},
+			draw(progress) {
+
+				opacityObjects.forEach(item => {
+					item.style.opacity = 1 - progress;
+					item.style.opacity = 1 - progress;
+				});
+			}
+		});
+		setTimeout(() => {
+			opacityObjects.forEach(item => {
+				item.style.display = 'none';
+			});
+		}, animateDuration);
+
+
+	}
+
+}
+
+
 function animate({
 	timing,
 	draw,
@@ -36,10 +91,15 @@ function debounce(callback, delay) {
 	};
 }
 
+const opacityFunctional = new OpacityFunctional();
+
+
 
 
 module.exports = {
 
 	debounce: debounce,
-	animate: animate
+	animate: animate,
+	opacityFunctional: opacityFunctional
+
 };

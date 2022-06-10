@@ -1,34 +1,64 @@
 'use strict';
 
-class SliderPrototype {
-	constructor(parent, items, left, right, amountGroup) {
+class SliderOptions {
+	constructor(parent, items, left, right, stay, amountGroup) {
 		this.parent = parent,
 			this.items = items,
 			this.arrows = [
 				left,
 				right
 			],
+			this.stay = stay,
 			this.amountGroup = amountGroup
+
 	}
 }
 
+class ModalOptions {
+	constructor(modalObjects, modalOverlay, clickElement, clsBtnElement) {
+		this.modalObjects = modalObjects,
+			this.modalOverlay = modalOverlay,
+			this.clickElement = clickElement,
+			this.clsBtnElement = clsBtnElement
 
-const beefisSlider = new SliderPrototype(
+	}
+}
+
+const beefisSlider = new SliderOptions(
 	'wrapp__benefits',
 	'benefits__item',
 	'benefits__arrow--left',
 	'benefits__arrow--right',
+	'start',
 	3);
 
-const servicesSlider = new SliderPrototype(
+const servicesSlider = new SliderOptions(
 	'wrapp__services',
 	'service__item',
 	'services__arrow--left',
 	'services__arrow--right',
+	'start',
 	2);
+const callBackParams = new ModalOptions(
+	'services-modal',
+	'overlay',
+	'btn-sm',
+	'services-modal__close');
 
+const modalParams = new ModalOptions(
+	'services-modal',
+	'overlay',
+	'btn-sm',
+	'services-modal__close');
+
+const certificateParams = new ModalOptions(
+	'services-modal',
+	'document-overlay',
+	'sertificate-document',
+	'services-modal__close');
 
 module.exports = {
 	beefisSlider: beefisSlider,
-	servicesSlider: servicesSlider
+	servicesSlider: servicesSlider,
+	modalParams: modalParams
 };

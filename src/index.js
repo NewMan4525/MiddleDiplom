@@ -3,7 +3,8 @@
 
 const {
 	beefisSlider,
-	servicesSlider
+	servicesSlider,
+	modalParams
 } = require('./modules/parameters.js');
 
 const slider = require('./modules/slider.js');
@@ -14,4 +15,4 @@ slider(beefisSlider);
 slider(servicesSlider);
 
 
-modal();
+modal(modalParams);
