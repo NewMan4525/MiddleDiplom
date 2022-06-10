@@ -26,13 +26,13 @@ const modal = (paramObj) => {
 
 
 			eventLogic(e) {
-				console.log(e.target);
-				if (e.target.classList.contains('btn-sm')) {
+
+				if (e.target.classList.contains(paramObj.clickElement)) {
 
 					opacityFunctional.openFunctional(this.objList, animateDuration);
 
 				}
-				if (e.target.classList.contains('services-modal__close')) {
+				if (e.target.classList.contains(paramObj.clsBtnElement)) {
 
 					opacityFunctional.clsFunctional(this.objList, animateDuration);
 

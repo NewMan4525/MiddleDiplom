@@ -40,10 +40,10 @@ const servicesSlider = new SliderOptions(
 	'start',
 	2);
 const callBackParams = new ModalOptions(
-	'services-modal',
+	'header-modal',
 	'overlay',
-	'btn-sm',
-	'services-modal__close');
+	'btn-block',
+	'header-modal__close');
 
 const modalParams = new ModalOptions(
 	'services-modal',
@@ -52,13 +52,15 @@ const modalParams = new ModalOptions(
 	'services-modal__close');
 
 const certificateParams = new ModalOptions(
-	'services-modal',
-	'document-overlay',
-	'sertificate-document',
-	'services-modal__close');
+	'img-responsive',
+	'overlay',
+	'img-responsive',
+	'overlay');
 
 module.exports = {
 	beefisSlider: beefisSlider,
 	servicesSlider: servicesSlider,
-	modalParams: modalParams
+	callBackParams: callBackParams,
+	modalParams: modalParams,
+	certificateParams: certificateParams
 };
