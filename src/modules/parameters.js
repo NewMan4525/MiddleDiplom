@@ -24,6 +24,13 @@ class ModalOptions {
 	}
 }
 
+class ScrollerOptions {
+	constructor(upScrollBtn, bottomLine) {
+		this.upScrollBtn = upScrollBtn,
+			this.bottomLine = bottomLine
+
+	}
+}
 
 
 const beefisSliderParams = new SliderOptions(
@@ -58,17 +65,22 @@ const certificateParams = new ModalOptions(
 	'overlay',
 	'img-responsive',
 	'overlay');
-class ScrollerOptions {
-	constructor(upScrollBtn, bottomLine) {
-		this.upScrollBtn = upScrollBtn,
-			this.bottomLine = bottomLine
 
-	}
-}
 const scrollerParams = new ScrollerOptions(
 	'smooth-scroll',
 	'benefits'
 );
+
+class ValidatorParams {
+	constructor() {}
+}
+const validatorParams = new ValidatorParams();
+
+
+class SendFormParams {
+	constructor() {}
+}
+const sendFormParams = new SendFormParams();
 
 module.exports = {
 	beefisSliderParams: beefisSliderParams,
@@ -76,5 +88,9 @@ module.exports = {
 	callBackParams: callBackParams,
 	modalParams: modalParams,
 	certificateParams: certificateParams,
-	scrollerParams: scrollerParams
+	scrollerParams: scrollerParams,
+	validatorParams: validatorParams,
+	sendFormParams: sendFormParams
+
+
 };
