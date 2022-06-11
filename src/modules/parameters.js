@@ -41,51 +41,6 @@ class ValidatorOptions {
 	}
 }
 
-
-const beefisSliderParams = new SliderOptions(
-	'wrapp__benefits',
-	'benefits__item',
-	'benefits__arrow--left',
-	'benefits__arrow--right',
-	'start',
-	3);
-
-const servicesSliderParams = new SliderOptions(
-	'wrapp__services',
-	'service__item',
-	'services__arrow--left',
-	'services__arrow--right',
-	'start',
-	2);
-const callBackParams = new ModalOptions(
-	'header-modal',
-	'overlay',
-	'btn-cb',
-	'header-modal__close');
-
-const modalParams = new ModalOptions(
-	'services-modal',
-	'overlay',
-	'btn-sm',
-	'services-modal__close');
-
-const certificateParams = new ModalOptions(
-	'img-responsive',
-	'overlay',
-	'img-responsive',
-	'overlay');
-
-const scrollerParams = new ScrollerOptions(
-	'smooth-scroll',
-	'benefits'
-);
-
-
-const validatorParams = new ValidatorOptions(
-	'input[name="fio"]',
-	'input[name="phone"]'
-);
-
 class SendFormOptions {
 	constructor(sendAdress, submitBtn, submitBtnModal) {
 		this.sendAdress = sendAdress,
@@ -95,12 +50,70 @@ class SendFormOptions {
 }
 
 
+const beefisSliderParams = new SliderOptions(
+	'wrapp__benefits',
+	'benefits__item',
+	'benefits__arrow--left',
+	'benefits__arrow--right',
+	'start',
+	3
+);
+
+const servicesSliderParams = new SliderOptions(
+	'wrapp__services',
+	'service__item',
+	'services__arrow--left',
+	'services__arrow--right',
+	'start',
+	2
+);
+
+const callBackParams = new ModalOptions(
+	'header-modal',
+	'overlay',
+	'btn-cb',
+	'header-modal__close'
+);
+
+const modalParams = new ModalOptions(
+	'services-modal',
+	'overlay',
+	'btn-sm',
+	'services-modal__close'
+);
+
+const certificateParams = new ModalOptions(
+	'img-responsive',
+	'overlay',
+	'img-responsive',
+	'overlay'
+);
+
+const scrollerParams = new ScrollerOptions(
+	'smooth-scroll',
+	'benefits'
+);
+
+const validatorParams = new ValidatorOptions(
+	'input[name="fio"]',
+	'input[name="phone"]'
+);
+
 const sendFormParams = new SendFormOptions(
 	'https://jsonplaceholder.typicode.com/posts',
 	'btn-form',
 	'btn-form-modal'
-
 );
+
+class CalcOptions {
+	constructor() {}
+
+}
+const calcParams = new CalcOptions();
+
+
+
+
 
 
 module.exports = {
@@ -111,7 +124,9 @@ module.exports = {
 	certificateParams: certificateParams,
 	scrollerParams: scrollerParams,
 	validatorParams: validatorParams,
-	sendFormParams: sendFormParams
+	sendFormParams: sendFormParams,
+	calcParams: calcParams
+
 
 
 };

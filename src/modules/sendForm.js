@@ -67,7 +67,7 @@ const sendForm = (paramObj) => {
 					sendOperation.sendData(sendOperation.data);
 
 				} else {
-					console.log('xyz');
+					// console.log('xyz');
 				}
 			}
 
