@@ -23,9 +23,7 @@ class ModalOptions {
 
 	}
 }
-class ScrollerOptions {
-	constructor() {}
-}
+
 
 
 const beefisSliderParams = new SliderOptions(
@@ -60,8 +58,17 @@ const certificateParams = new ModalOptions(
 	'overlay',
 	'img-responsive',
 	'overlay');
+class ScrollerOptions {
+	constructor(upScrollBtn, bottomLine) {
+		this.upScrollBtn = upScrollBtn,
+			this.bottomLine = bottomLine
 
-const scrollerParams = new ScrollerOptions();
+	}
+}
+const scrollerParams = new ScrollerOptions(
+	'smooth-scroll',
+	'benefits'
+);
 
 module.exports = {
 	beefisSliderParams: beefisSliderParams,
