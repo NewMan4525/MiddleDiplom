@@ -10,7 +10,8 @@ const {
 	scrollerParams,
 	validatorParams,
 	sendFormParams,
-	calcParams
+	calcParams,
+	timerParams
 } = require('./modules/parameters.js');
 
 const slider = require('./modules/slider.js');
@@ -19,6 +20,8 @@ const scroller = require('./modules/scroller.js');
 const validator = require('./modules/validator.js');
 const sendForm = require('./modules/sendForm.js');
 const calc = require('./modules/calc.js');
+const timer = require('./modules/timer.js');
+
 
 
 slider(beefisSliderParams);
@@ -35,3 +38,5 @@ validator(validatorParams);
 sendForm(sendFormParams);
 
 calc(calcParams);
+
+timer(timerParams);

@@ -4,7 +4,7 @@ const {
 	debounce,
 	animate,
 	opacityFunctional,
-	listsFunctional
+	elementsFunctional
 } = require('./helpers.js');
 
 
@@ -55,10 +55,10 @@ const modal = (paramObj) => {
 
 			start() {
 
-				listsFunctional.separator(this.modalObjects, this.pusher);
-				listsFunctional.separator(this.modalOverlay, this.pusher);
-				listsFunctional.separator(this.clickElement, this.addEvent);
-				listsFunctional.separator(this.clsBtnElement, this.addEvent);
+				elementsFunctional.separator(this.modalObjects, this.pusher);
+				elementsFunctional.separator(this.modalOverlay, this.pusher);
+				elementsFunctional.separator(this.clickElement, this.addEvent);
+				elementsFunctional.separator(this.clsBtnElement, this.addEvent);
 
 			}
 

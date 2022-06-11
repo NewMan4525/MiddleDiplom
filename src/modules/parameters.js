@@ -59,6 +59,17 @@ class CalcOptions {
 	}
 }
 
+class TimerOptions {
+	constructor(days, hours, minutes, seconds, deadline) {
+		this.days = days,
+			this.hours = hours,
+			this.minutes = minutes,
+			this.seconds = seconds,
+			this.deadline = deadline
+	}
+}
+
+
 const beefisSliderParams = new SliderOptions(
 	'wrapp__benefits',
 	'benefits__item',
@@ -122,7 +133,13 @@ const calcParams = new CalcOptions(
 	'calc-total'
 );
 
-
+const timerParams = new TimerOptions(
+	'count_1',
+	'count_2',
+	'count_3',
+	'count_4',
+	'13.june2022, 21:00'
+);
 
 
 
@@ -136,8 +153,7 @@ module.exports = {
 	scrollerParams: scrollerParams,
 	validatorParams: validatorParams,
 	sendFormParams: sendFormParams,
-	calcParams: calcParams
-
-
+	calcParams: calcParams,
+	timerParams: timerParams
 
 };

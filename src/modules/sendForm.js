@@ -4,7 +4,7 @@ const {
 	debounce,
 	animate,
 	opacityFunctional,
-	listsFunctional
+	elementsFunctional
 } = require('./helpers.js');
 
 
@@ -91,8 +91,8 @@ const sendForm = (paramObj) => {
 
 			start() {
 
-				listsFunctional.separator(this.submitBtn, this.addEvent);
-				listsFunctional.separator(this.submitBtnModal, this.addEvent);
+				elementsFunctional.separator(this.submitBtn, this.addEvent);
+				elementsFunctional.separator(this.submitBtnModal, this.addEvent);
 
 			}
 		}

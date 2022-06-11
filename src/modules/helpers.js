@@ -54,7 +54,7 @@ class OpacityFunctional {
 
 }
 
-class ListsFunctional {
+class ElementsFunctional {
 	constructor() {}
 	separator(element, funcName) {
 
@@ -67,6 +67,56 @@ class ListsFunctional {
 		}
 	}
 
+	manager(roadMap = {
+		items: [],
+		functions: [],
+		arguments: [],
+		digitMap: [
+			[],
+			[],
+			[]
+		]
+
+	}) {
+
+		let result;
+
+		switch (roadMap) {
+
+			case 'num':
+
+				result = this.regexps.num;
+
+				break;
+
+			case 'tel':
+
+				result = this.regexps.tel;
+
+				break;
+
+			case 'ru':
+
+				result = this.regexps.ru;
+
+				break;
+
+			case 'mail':
+
+				result = this.regexps.mail;
+
+				break;
+
+			case 'msg':
+
+				result = this.regexps.msg;
+
+				break;
+
+		}
+
+		return result;
+	}
 
 
 }
@@ -109,7 +159,7 @@ function debounce(callback, delay) {
 }
 
 const opacityFunctional = new OpacityFunctional();
-const listsFunctional = new ListsFunctional();
+const elementsFunctional = new ElementsFunctional();
 
 
 
@@ -118,6 +168,6 @@ module.exports = {
 	debounce: debounce,
 	animate: animate,
 	opacityFunctional: opacityFunctional,
-	listsFunctional: listsFunctional
+	elementsFunctional: elementsFunctional
 
 };

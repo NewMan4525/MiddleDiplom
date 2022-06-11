@@ -1,65 +1,128 @@
 'use strict';
 
-function timer(deadLine) {
+const {
+	debounce,
+	animate,
+	opacityFunctional,
+	listsFunctional
+} = require('./helpers.js');
 
-	const timerHours = document.getElementById('timer-hours');
-	const timerMinutes = document.getElementById('timer-minutes');
-	const timerSeconds = document.getElementById('timer-seconds');
+
+function timer(paramObj) {
+	try {
+
+		class Timer {
+			constructor() {
+
+				this.elemDays = document.querySelectorAll(`.${paramObj.days}>span`);
+				this.elemHours = document.querySelectorAll(`.${paramObj.hours}>span`);
+				this.elemMinutes = document.querySelectorAll(`.${paramObj.minutes}>span`);
+				this.elemSeconds = document.querySelectorAll(`.${paramObj.seconds}>span`);
+
+			}
 
 
-	const twoDigits = (digit) => {
+			twoDigits(digit) {
 
-		if (digit < 10) {
-			digit = '0' + digit;
-			return digit;
+				if (digit < 10) {
+					digit = '0' + digit;
+					return digit;
+				}
+				return digit;
+			}
+
+			getTimeRemaining() {
+
+				const dateStop = new Date(paramObj.deadline).getTime();
+				const dateNow = new Date().getTime();
+
+				let timeRemaining = (dateStop - dateNow) / 1000;
+				let days = Math.floor(timeRemaining / 60 / 60 / 24);
+				let hours = Math.floor((timeRemaining / 60 / 60) % 24);
+				let minutes = Math.floor((timeRemaining / 60) % 60);
+				let seconds = Math.floor(timeRemaining % 60);
+
+
+				if (timeRemaining <= 0) {
+
+					return {
+						timeRemaining,
+						days: 0,
+						hours: 0,
+						minutes: 0,
+						seconds: 0
+					};
+
+				} else {
+
+					return {
+						timeRemaining,
+						days,
+						hours,
+						minutes,
+						seconds
+					};
+				}
+			}
+
+			timeManager(nodeList) {
+				let getTime = timer.getTimeRemaining();
+				let time;
+				switch (nodeList) {
+					case timer.elemDays:
+						time = getTime.days;
+						break;
+					case timer.elemHours:
+						time = getTime.hours;
+						break;
+
+					case timer.elemMinutes:
+						time = getTime.minutes;
+						break;
+
+					case timer.elemSeconds:
+						time = getTime.seconds;
+						break;
+				}
+
+				nodeList.forEach(element => {
+					element.textContent = timer.twoDigits(time);
+				});
+
+			}
+
+			elemBuffer() {
+				timer.timeManager(timer.elemDays);
+				timer.timeManager(timer.elemHours);
+				timer.timeManager(timer.elemMinutes);
+				timer.timeManager(timer.elemSeconds);
+			}
+
+			intervalUp() {
+
+				if (this.getTimeRemaining().timeRemaining > 0) {
+
+					setInterval(this.elemBuffer, 1000);
+				}
+
+				this.elemBuffer();
+			}
+
+			start() {
+				this.intervalUp();
+
+			}
+
 		}
-		return digit;
-	};
 
-	const getTimeRemaining = () => {
 
-		const dateStop = new Date(deadLine).getTime();
-		const dateNow = new Date().getTime();
-		let timeRemaining = (dateStop - dateNow) / 1000;
-		let days = Math.floor(timeRemaining / 60 / 60 / 24);
-		let hours = Math.floor((timeRemaining / 60 / 60) % 24);
-		let minutes = Math.floor((timeRemaining / 60) % 60);
-		let seconds = Math.floor(timeRemaining % 60);
-		if (timeRemaining <= 0) {
+		const timer = new Timer();
+		timer.start();
 
-			return {
-				timeRemaining,
-				hours: 0,
-				minutes: 0,
-				seconds: 0
-			};
-
-		} else {
-
-			return {
-				timeRemaining,
-				hours,
-				minutes,
-				seconds
-			};
-		}
-	};
-
-	const updateClock = () => {
-
-		let getTime = getTimeRemaining();
-		timerHours.textContent = twoDigits(getTime.hours);
-		timerMinutes.textContent = twoDigits(getTime.minutes);
-		timerSeconds.textContent = twoDigits(getTime.seconds);
-	};
-
-	if (getTimeRemaining().timeRemaining > 0) {
-
-		setInterval(updateClock, 1000);
+	} catch (err) {
+		console.log('!!!!!timer error', err);
 	}
-
-	updateClock();
-
 }
+
 
 module.exports = timer;
