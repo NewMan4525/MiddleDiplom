@@ -51,7 +51,7 @@ const servicesSliderParams = new SliderOptions(
 const callBackParams = new ModalOptions(
 	'header-modal',
 	'overlay',
-	'btn-block',
+	'btn-cb',
 	'header-modal__close');
 
 const modalParams = new ModalOptions(
