@@ -54,6 +54,23 @@ class OpacityFunctional {
 
 }
 
+class ListsFunctional {
+	constructor() {}
+	separator(element, funcName) {
+
+		if (NodeList.prototype.isPrototypeOf(element) || Array.prototype.isPrototypeOf(element)) {
+			element.forEach(item => {
+				funcName(item);
+			});
+		} else {
+			funcName(element);
+		}
+	}
+
+
+
+}
+
 
 function animate({
 	timing,
@@ -92,7 +109,7 @@ function debounce(callback, delay) {
 }
 
 const opacityFunctional = new OpacityFunctional();
-
+const listsFunctional = new ListsFunctional();
 
 
 
@@ -100,6 +117,7 @@ module.exports = {
 
 	debounce: debounce,
 	animate: animate,
-	opacityFunctional: opacityFunctional
+	opacityFunctional: opacityFunctional,
+	listsFunctional: listsFunctional
 
 };

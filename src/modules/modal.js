@@ -3,7 +3,8 @@
 const {
 	debounce,
 	animate,
-	opacityFunctional
+	opacityFunctional,
+	listsFunctional
 } = require('./helpers.js');
 
 
@@ -52,25 +53,12 @@ const modal = (paramObj) => {
 				});
 			}
 
-			arraySensor(element, funcName) {
-
-				if (NodeList.prototype.isPrototypeOf(element)) {
-					element.forEach(item => {
-						funcName(item);
-					});
-				} else {
-					funcName(element);
-				}
-			}
-
-
 			start() {
 
-				this.arraySensor(this.modalObjects, this.pusher);
-				this.arraySensor(this.modalOverlay, this.pusher);
-				this.arraySensor(this.clickElement, this.addEvent);
-				this.arraySensor(this.clsBtnElement, this.addEvent);
-
+				listsFunctional.separator(this.modalObjects, this.pusher);
+				listsFunctional.separator(this.modalOverlay, this.pusher);
+				listsFunctional.separator(this.clickElement, this.addEvent);
+				listsFunctional.separator(this.clsBtnElement, this.addEvent);
 
 			}
 

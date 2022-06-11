@@ -41,6 +41,7 @@ class ValidatorOptions {
 	}
 }
 
+
 const beefisSliderParams = new SliderOptions(
 	'wrapp__benefits',
 	'benefits__item',
@@ -85,11 +86,22 @@ const validatorParams = new ValidatorOptions(
 	'input[name="phone"]'
 );
 
-
 class SendFormOptions {
-	constructor() {}
+	constructor(sendAdress, submitBtn, submitBtnModal) {
+		this.sendAdress = sendAdress,
+			this.submitBtn = submitBtn,
+			this.submitBtnModal = submitBtnModal
+	}
 }
-const sendFormParams = new SendFormOptions();
+
+
+const sendFormParams = new SendFormOptions(
+	'https://jsonplaceholder.typicode.com/posts',
+	'btn-form',
+	'btn-form-modal'
+
+);
+
 
 module.exports = {
 	beefisSliderParams: beefisSliderParams,
