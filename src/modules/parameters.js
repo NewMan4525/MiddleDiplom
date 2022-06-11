@@ -42,13 +42,22 @@ class ValidatorOptions {
 }
 
 class SendFormOptions {
-	constructor(sendAdress, submitBtn, submitBtnModal) {
+	constructor(sendAdress, submitBtn, submitBtnModal, idTotal) {
 		this.sendAdress = sendAdress,
 			this.submitBtn = submitBtn,
-			this.submitBtnModal = submitBtnModal
+			this.submitBtnModal = submitBtnModal,
+			this.idTotal = idTotal
 	}
 }
 
+class CalcOptions {
+	constructor(idSquare, idType, idTypeMaterial, idTotal) {
+		this.idSquare = idSquare,
+			this.idType = idType,
+			this.idTypeMaterial = idTypeMaterial,
+			this.idTotal = idTotal
+	}
+}
 
 const beefisSliderParams = new SliderOptions(
 	'wrapp__benefits',
@@ -102,14 +111,16 @@ const validatorParams = new ValidatorOptions(
 const sendFormParams = new SendFormOptions(
 	'https://jsonplaceholder.typicode.com/posts',
 	'btn-form',
-	'btn-form-modal'
+	'btn-form-modal',
+	'calc-total'
 );
 
-class CalcOptions {
-	constructor() {}
-
-}
-const calcParams = new CalcOptions();
+const calcParams = new CalcOptions(
+	'calc-input',
+	'calc-type',
+	'calc-type-material',
+	'calc-total'
+);
 
 
 
