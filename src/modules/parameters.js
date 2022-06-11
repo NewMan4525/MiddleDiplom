@@ -32,6 +32,14 @@ class ScrollerOptions {
 	}
 }
 
+class ValidatorOptions {
+	constructor(nameInput, namePhone, nameEmail, nameMessage) {
+		this.nameInput = nameInput,
+			this.namePhone = namePhone,
+			this.nameEmail = nameEmail,
+			this.nameMessage = nameMessage
+	}
+}
 
 const beefisSliderParams = new SliderOptions(
 	'wrapp__benefits',
@@ -71,16 +79,17 @@ const scrollerParams = new ScrollerOptions(
 	'benefits'
 );
 
-class ValidatorParams {
-	constructor() {}
-}
-const validatorParams = new ValidatorParams();
+
+const validatorParams = new ValidatorOptions(
+	'input[name="fio"]',
+	'input[name="phone"]'
+);
 
 
-class SendFormParams {
+class SendFormOptions {
 	constructor() {}
 }
-const sendFormParams = new SendFormParams();
+const sendFormParams = new SendFormOptions();
 
 module.exports = {
 	beefisSliderParams: beefisSliderParams,

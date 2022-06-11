@@ -13,10 +13,9 @@ const validator = (paramObj) => {
 
 		class Validator {
 			constructor() {
-				//name='fio'
-				//name='phone'
-				this.nameInput = document.querySelectorAll('input[name="fio"]');
-				this.namePhone = document.querySelectorAll('input[name="phone"]');
+
+				this.nameInput = document.querySelectorAll(paramObj.nameInput);
+				this.namePhone = document.querySelectorAll(paramObj.namePhone);
 
 				this.regexps = {
 
@@ -103,7 +102,7 @@ const validator = (paramObj) => {
 				elem.addEventListener(event, (elem) => {
 
 					this.repleacer(elem, flag);
-					console.log(elem, flag);
+
 				});
 
 			}
