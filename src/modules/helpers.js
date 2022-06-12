@@ -162,7 +162,6 @@ const opacityFunctional = new OpacityFunctional();
 const elementsFunctional = new ElementsFunctional();
 
 
-
 module.exports = {
 
 	debounce: debounce,

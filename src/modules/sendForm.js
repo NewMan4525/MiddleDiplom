@@ -64,20 +64,23 @@ const sendForm = (paramObj) => {
 					currentFormInputsModal = examinationOption[1];
 				}
 
-				if (currentFormInputsModal[0].value !== '' && currentFormInputsModal[1].value !== '') {
-					sendOperation.data.name = currentFormInputsModal[0].value;
-					sendOperation.data.phone = currentFormInputsModal[1].value;
-					if (this.total.value === '') {
-						sendOperation.data.total = 0;
-					} else {
-						sendOperation.data.total = +this.total.value;
-					}
+				console.log('send');
 
-					sendOperation.sendData(sendOperation.data);
 
-				} else {
-					// console.log('xyz');
-				}
+				// if (currentFormInputsModal[0].value.lenth > 1 && currentFormInputsModal[1].valuelenth > 11) {
+				// 	sendOperation.data.name = currentFormInputsModal[0].value;
+				// 	sendOperation.data.phone = currentFormInputsModal[1].value;
+				// 	if (this.total.value === '') {
+				// 		sendOperation.data.total = 0;
+				// 	} else {
+				// 		sendOperation.data.total = +this.total.value;
+				// 	}
+
+				// 	sendOperation.sendData(sendOperation.data);
+
+				// } else {
+				// 	console.log('xyz');
+				// }
 			}
 
 			addEvent(element) {

@@ -1,6 +1,5 @@
 'use strict';
 
-
 const {
 	beefisSliderParams,
 	servicesSliderParams,
@@ -23,20 +22,13 @@ const calc = require('./modules/calc.js');
 const timer = require('./modules/timer.js');
 
 
-
 slider(beefisSliderParams);
 slider(servicesSliderParams);
-
 modal(callBackParams);
 modal(modalParams);
-//modal(certificateParams);
-
+modal(certificateParams);
 scroller(scrollerParams);
-
 validator(validatorParams);
-
 sendForm(sendFormParams);
-
 calc(calcParams);
-
 timer(timerParams);

@@ -2,73 +2,17 @@
 
 class SliderOptions {
 	constructor(parent, items, left, right, stay, amountGroup) {
-		this.parent = parent,
-			this.items = items,
-			this.arrows = [
-				left,
-				right
-			],
-			this.stay = stay,
-			this.amountGroup = amountGroup
+		this.parent = parent;
+		this.items = items;
+		this.arrows = [
+			left,
+			right
+		];
+		this.stay = stay;
+		this.amountGroup = amountGroup;
 
 	}
 }
-
-class ModalOptions {
-	constructor(modalObjects, modalOverlay, clickElement, clsBtnElement) {
-		this.modalObjects = modalObjects,
-			this.modalOverlay = modalOverlay,
-			this.clickElement = clickElement,
-			this.clsBtnElement = clsBtnElement
-
-	}
-}
-
-class ScrollerOptions {
-	constructor(upScrollBtn, bottomLine) {
-		this.upScrollBtn = upScrollBtn,
-			this.bottomLine = bottomLine
-
-	}
-}
-
-class ValidatorOptions {
-	constructor(nameInput, namePhone, nameEmail, nameMessage) {
-		this.nameInput = nameInput,
-			this.namePhone = namePhone,
-			this.nameEmail = nameEmail,
-			this.nameMessage = nameMessage
-	}
-}
-
-class SendFormOptions {
-	constructor(sendAdress, submitBtn, submitBtnModal, idTotal) {
-		this.sendAdress = sendAdress,
-			this.submitBtn = submitBtn,
-			this.submitBtnModal = submitBtnModal,
-			this.idTotal = idTotal
-	}
-}
-
-class CalcOptions {
-	constructor(idSquare, idType, idTypeMaterial, idTotal) {
-		this.idSquare = idSquare,
-			this.idType = idType,
-			this.idTypeMaterial = idTypeMaterial,
-			this.idTotal = idTotal
-	}
-}
-
-class TimerOptions {
-	constructor(days, hours, minutes, seconds, deadline) {
-		this.days = days,
-			this.hours = hours,
-			this.minutes = minutes,
-			this.seconds = seconds,
-			this.deadline = deadline
-	}
-}
-
 
 const beefisSliderParams = new SliderOptions(
 	'wrapp__benefits',
@@ -87,6 +31,16 @@ const servicesSliderParams = new SliderOptions(
 	'start',
 	2
 );
+
+class ModalOptions {
+	constructor(modalObjects, modalOverlay, clickElement, clsBtnElement) {
+		this.modalObjects = modalObjects;
+		this.modalOverlay = modalOverlay;
+		this.clickElement = clickElement;
+		this.clsBtnElement = clsBtnElement;
+
+	}
+}
 
 const callBackParams = new ModalOptions(
 	'header-modal',
@@ -109,15 +63,41 @@ const certificateParams = new ModalOptions(
 	'overlay'
 );
 
+class ScrollerOptions {
+	constructor(upScrollBtn, bottomLine) {
+		this.upScrollBtn = upScrollBtn;
+		this.bottomLine = bottomLine;
+
+	}
+}
+
 const scrollerParams = new ScrollerOptions(
 	'smooth-scroll',
 	'benefits'
 );
 
+class ValidatorOptions {
+	constructor(nameInput, namePhone, nameEmail, nameMessage) {
+		this.nameInput = nameInput;
+		this.namePhone = namePhone;
+		this.nameEmail = nameEmail;
+		this.nameMessage = nameMessage;
+	}
+}
+
 const validatorParams = new ValidatorOptions(
 	'input[name="fio"]',
 	'input[name="phone"]'
 );
+
+class SendFormOptions {
+	constructor(sendAdress, submitBtn, submitBtnModal, idTotal) {
+		this.sendAdress = sendAdress;
+		this.submitBtn = submitBtn;
+		this.submitBtnModal = submitBtnModal;
+		this.idTotal = idTotal;
+	}
+}
 
 const sendFormParams = new SendFormOptions(
 	'https://jsonplaceholder.typicode.com/posts',
@@ -126,12 +106,31 @@ const sendFormParams = new SendFormOptions(
 	'calc-total'
 );
 
+class CalcOptions {
+	constructor(idSquare, idType, idTypeMaterial, idTotal) {
+		this.idSquare = idSquare;
+		this.idType = idType;
+		this.idTypeMaterial = idTypeMaterial;
+		this.idTotal = idTotal;
+	}
+}
+
 const calcParams = new CalcOptions(
 	'calc-input',
 	'calc-type',
 	'calc-type-material',
 	'calc-total'
 );
+
+class TimerOptions {
+	constructor(days, hours, minutes, seconds, deadline) {
+		this.days = days;
+		this.hours = hours;
+		this.minutes = minutes;
+		this.seconds = seconds;
+		this.deadline = deadline;
+	}
+}
 
 const timerParams = new TimerOptions(
 	'count_1',
@@ -140,8 +139,6 @@ const timerParams = new TimerOptions(
 	'count_4',
 	'13.june2022, 21:00'
 );
-
-
 
 
 module.exports = {
@@ -155,5 +152,4 @@ module.exports = {
 	sendFormParams: sendFormParams,
 	calcParams: calcParams,
 	timerParams: timerParams
-
 };
