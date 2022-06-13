@@ -32,7 +32,7 @@ const certificates = (paramObj) => {
 
 			// openModal() {
 
-			// 	this.closeBtn.textContent = 'X';
+
 			// 	this.closeBtn.style.cssText = 'z-index:1;color:red;font-size:60px';
 			// 	this.overlay.style.cssText =
 			// 		'display:block;text-align:center;padding-top:5vh;';
@@ -45,55 +45,94 @@ const certificates = (paramObj) => {
 
 			// }
 
-			addElementInHtml(element, index) {
-				index = 0;
 
+			closeModal() {
+				certificates.sertificateTable.remove();
+				certificates.sertificateImage.remove();
+				certificates.arowLeft.remove();
+				certificates.arowRight.remove();
+				certificates.closeBtn.remove();
+				certificates.styler.remove();
+				certificates.overlay.style.display = 'none';
+				this.overlay.removeEventListener('click', (e) => {
+					this.modalLogic(e.target);
+				});
+			}
+
+			modalLogic(element, index) {
+
+				if (element === this.closeBtn || element === this.overlay) {
+					this.closeModal();
+					console.log('close');
+				}
+				if (element === this.arowLeft) {
+					index--;
+					if (index === -1) {
+						index = this.imgAdres.length - 1;
+					}
+
+					this.sertificateImage.setAttribute('src', this.imgAdres[index--]);
+
+					console.log('left');
+
+				}
+
+				if (element === this.arowRight) {
+					index++;
+					if (index === this.imgAdres.length) {
+						index = 0;
+					}
+
+					this.sertificateImage.setAttribute('src', this.imgAdres[index]);
+					console.log('right');
+				}
+
+				this.openLogic(element, index);
+			}
+
+			addElementInHtml() {
+				this.overlay.append(this.sertificateTable);
+				this.sertificateTable.append(this.closeBtn);
 				this.sertificateTable.append(this.arowLeft);
 				this.sertificateTable.append(this.sertificateImage);
 				this.sertificateTable.append(this.arowRight);
-
-
-				//console.log(this.imgAdres[index]);
-				this.sertificateImage.setAttribute('src', this.imgAdres[index]);
-
-
+				this.sertificateTable.append(this.styler);
 			}
-
-			addEvent(element, index) {
-
-				element.addEventListener('click', (e) => {
-					e.preventDefault();
-					this.addElementInHtml(element, index);
-				});
-
-			}
-
-			foreacher() {
-				this.clickImages.forEach((element, index) => {
-					this.addEvent(element, index);
-				});
-
-			}
-
-
-
 
 			elementsStyles() {
 				this.overlay.style.display = 'block';
-				this.sertificateTable.style.cssText = 'display:flex;flex-direction:row;justify-content:space-between;align-content:center;margin:5% auto;z-index:10;width:950px;max-height:1200px;background-color:red;';
-				// this.sertificateImage
-				this.arowLeft.style.cssText = 'width:10px;height:10px;background-color:navy;';
-				this.arowRight.style.cssText = 'width:10px;height:10px;background-color:navy;';
-				// this.closeBtn
-
+				this.closeBtn.style.cssText = 'position:absolute;z-index:10;top:0;right:0;';
+				this.styler.textContent =
+					'.cert_table{' +
+					'position:relative;' +
+					'display:flex;' +
+					'flex-direction:row;' +
+					'justify-content:space-between;' +
+					'align-items:center;' +
+					'margin:5% auto;' +
+					'z-index:10;' +
+					'width:950px;}' +
+					'.cert_manager{' +
+					'position: relative;' +
+					'width: 50px;' +
+					'height: 50px;' +
+					'border:3px solid white;' +
+					'border-radius:50%;' +
+					'color:white;' +
+					'padding:12px;' +
+					'font-size:45px;' +
+					'text-align:center;' +
+					'align-content:center;';
 			}
 
 			elementsAtributes() {
-				// this.sertificateTable
-				// this.sertificateImage
-				// this.arowLeft
-				// this.arowRight
-				// this.closeBtn
+				this.sertificateTable.classList.add('cert_table');
+				this.arowLeft.classList.add('cert_manager');
+				this.arowLeft.textContent = '<';
+				this.arowRight.classList.add('cert_manager');
+				this.arowRight.textContent = '>';
+				this.closeBtn.classList.add('cert_manager');
+				this.closeBtn.textContent = 'X';
 			}
 
 			elementsCreate() {
@@ -101,22 +140,49 @@ const certificates = (paramObj) => {
 				this.sertificateImage = document.createElement('img');
 				this.arowLeft = document.createElement('div');
 				this.arowRight = document.createElement('div');
-				this.closeBtn = document.createElement('span');
+				this.closeBtn = document.createElement('div');
+				this.styler = document.createElement('style');
+			}
+
+			elementOperator() {
+				this.elementsCreate();
+				this.elementsAtributes();
+				this.elementsStyles();
+				this.addElementInHtml();
+			}
+
+
+			openLogic(element, index) {
+				this.elementOperator();
+
+				this.sertificateImage.setAttribute('src', this.imgAdres[index]);
+
+				this.overlay.addEventListener('click', (e) => {
+					this.modalLogic(e.target, index);
+				});
 
 			}
 
 
 
 
+			addEvent(element, index) {
+
+				element.addEventListener('click', (e) => {
+					e.preventDefault();
+					this.openLogic(element, index);
+				});
+			}
+
+			foreacher() {
+				this.clickImages.forEach((element, index) => {
+					this.addEvent(element, index);
+				});
+			}
+
 
 			start() {
-				this.elementsCreate();
-				this.elementsAtributes();
-				this.elementsStyles();
-				//this.foreacher();
-
-				this.overlay.append(this.sertificateTable);
-				this.addElementInHtml();
+				this.foreacher();
 			}
 		}
 
