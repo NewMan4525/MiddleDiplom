@@ -3,8 +3,8 @@
 const {
 	debounce,
 	animate,
-	opacityFunctional
-
+	opacityFunctional,
+	elementsFunctional
 } = require('./helpers.js');
 
 

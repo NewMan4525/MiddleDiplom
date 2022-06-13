@@ -49,7 +49,7 @@ const callBackParams = new ModalOptions(
 	'header-modal__close'
 );
 
-const modalParams = new ModalOptions(
+const servicesParams = new ModalOptions(
 	'services-modal',
 	'overlay',
 	'btn-sm',
@@ -145,7 +145,7 @@ module.exports = {
 	beefisSliderParams: beefisSliderParams,
 	servicesSliderParams: servicesSliderParams,
 	callBackParams: callBackParams,
-	modalParams: modalParams,
+	servicesParams: servicesParams,
 	certificateParams: certificateParams,
 	scrollerParams: scrollerParams,
 	validatorParams: validatorParams,

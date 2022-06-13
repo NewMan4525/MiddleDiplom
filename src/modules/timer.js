@@ -4,7 +4,7 @@ const {
 	debounce,
 	animate,
 	opacityFunctional,
-	listsFunctional
+	elementsFunctional
 } = require('./helpers.js');
 
 

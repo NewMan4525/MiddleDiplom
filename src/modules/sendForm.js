@@ -17,7 +17,6 @@ const sendForm = (paramObj) => {
 
 				this.total = document.getElementById(paramObj.idTotal);
 
-				console.log(this.total === null);
 				this.data = {};
 			}
 

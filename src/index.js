@@ -4,7 +4,7 @@ const {
 	beefisSliderParams,
 	servicesSliderParams,
 	callBackParams,
-	modalParams,
+	servicesParams,
 	certificateParams,
 	scrollerParams,
 	validatorParams,
@@ -20,13 +20,14 @@ const validator = require('./modules/validator.js');
 const sendForm = require('./modules/sendForm.js');
 const calc = require('./modules/calc.js');
 const timer = require('./modules/timer.js');
+const certificates = require('./modules/certificates.js');
 
 
 slider(beefisSliderParams);
 slider(servicesSliderParams);
 modal(callBackParams);
-modal(modalParams);
-modal(certificateParams);
+modal(servicesParams);
+certificates();
 scroller(scrollerParams);
 validator(validatorParams);
 sendForm(sendFormParams);
