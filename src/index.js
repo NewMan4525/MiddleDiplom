@@ -4,7 +4,7 @@ const {
 	beefisSliderParams,
 	servicesSliderParams,
 	callBackParams,
-	modalParams,
+	servicesParams,
 	certificateParams,
 	scrollerParams,
 	validatorParams,
@@ -12,7 +12,7 @@ const {
 	calcParams,
 	timerParams
 } = require('./modules/parameters.js');
-
+const certificates = require('./modules/certificates.js');
 const slider = require('./modules/slider.js');
 const modal = require('./modules/modal.js');
 const scroller = require('./modules/scroller.js');
@@ -22,11 +22,12 @@ const calc = require('./modules/calc.js');
 const timer = require('./modules/timer.js');
 
 
+certificates();
 slider(beefisSliderParams);
 slider(servicesSliderParams);
 modal(callBackParams);
-modal(modalParams);
-modal(certificateParams);
+modal(servicesParams);
+
 scroller(scrollerParams);
 validator(validatorParams);
 sendForm(sendFormParams);

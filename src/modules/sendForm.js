@@ -17,7 +17,6 @@ const sendForm = (paramObj) => {
 
 				this.total = document.getElementById(paramObj.idTotal);
 
-
 				this.data = {};
 			}
 
@@ -64,23 +63,25 @@ const sendForm = (paramObj) => {
 					currentFormInputsModal = examinationOption[1];
 				}
 
-				console.log('send');
 
 
-				// if (currentFormInputsModal[0].value.lenth > 1 && currentFormInputsModal[1].valuelenth > 11) {
-				// 	sendOperation.data.name = currentFormInputsModal[0].value;
-				// 	sendOperation.data.phone = currentFormInputsModal[1].value;
-				// 	if (this.total.value === '') {
-				// 		sendOperation.data.total = 0;
-				// 	} else {
-				// 		sendOperation.data.total = +this.total.value;
-				// 	}
 
-				// 	sendOperation.sendData(sendOperation.data);
+				if (currentFormInputsModal[0].value.length > 1 && currentFormInputsModal[1].value.length > 10) {
+					this.data.name = currentFormInputsModal[0].value;
+					this.data.phone = currentFormInputsModal[1].value;
+					if (this.total === null) {
+						this.data.total = 0;
+					} else
+					if (this.total.value === '') {
+						this.data.total = 0;
+					} else {
+						this.data.total = +this.total.value;
+					}
+					this.sendData(this.data);
 
-				// } else {
-				// 	console.log('xyz');
-				// }
+				} else {
+					console.log('xyz');
+				}
 			}
 
 			addEvent(element) {
@@ -100,7 +101,7 @@ const sendForm = (paramObj) => {
 			}
 		}
 
-		const sendOperation = new SendOperation();
+		//const sendOperation = new SendOperation();
 		const sendPremission = new SendPremission();
 
 

@@ -9,7 +9,11 @@ const {
 
 
 const certificates = (paramObj) => {
+<<<<<<< HEAD
 	//
+=======
+
+>>>>>>> certificates
 	try {
 		let currentCertificate = 0;
 		class Certificates {
