@@ -46,6 +46,7 @@ class OpacityFunctional {
 		setTimeout(() => {
 			opacityObjects.forEach(item => {
 				item.style.display = 'none';
+
 			});
 		}, animateDuration);
 

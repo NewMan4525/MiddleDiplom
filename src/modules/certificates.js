@@ -10,41 +10,20 @@ const {
 
 const certificates = (paramObj) => {
 
-
-
-
-	//.img-responsive[src="images/documents/document4.jpg"]
-
-
 	try {
-
+		let currentCertificate = 0;
 		class Certificates {
 			constructor() {
 				this.clickImages = document.querySelectorAll('.sertificate-document');
 				this.overlay = document.querySelector('.overlay');
 
+				this.overlay.style.opacity = '1';
 				this.imgAdres = [
 					'/images/documents/original/document4.jpg',
 					'/images/documents/original/document4.1.jpg',
 					'/images/documents/original/document4.2.jpg'
 				];
 			}
-
-			// openModal() {
-
-
-			// 	this.closeBtn.style.cssText = 'z-index:1;color:red;font-size:60px';
-			// 	this.overlay.style.cssText =
-			// 		'display:block;text-align:center;padding-top:5vh;';
-			// 	this.overlay.append(this.sertificateView);
-			// 	this.sertificateView.append(this.closeBtn);
-			// 	this.sertificateView.setAttribute('src', '/images/documents/original/document4.jpg');
-
-			// 	this.overlay.addEventListener('click', this.closeModal);
-
-
-			// }
-
 
 			closeModal() {
 				certificates.sertificateTable.remove();
@@ -54,40 +33,48 @@ const certificates = (paramObj) => {
 				certificates.closeBtn.remove();
 				certificates.styler.remove();
 				certificates.overlay.style.display = 'none';
-				this.overlay.removeEventListener('click', (e) => {
-					this.modalLogic(e.target);
-				});
+			}
+
+			renderModal(index) {
+
+				this.sertificateImage.setAttribute('src', this.imgAdres[currentCertificate]);
+			}
+
+			right() {
+				currentCertificate++;
+				if (currentCertificate === this.imgAdres.length) {
+					currentCertificate = 0;
+				}
+				this.renderModal(currentCertificate);
+			}
+
+			left() {
+
+				currentCertificate--;
+				if (currentCertificate === -1) {
+					currentCertificate = this.imgAdres.length - 1;
+				}
+				this.renderModal(currentCertificate);
+
 			}
 
 			modalLogic(element, index) {
 
-				if (element === this.closeBtn || element === this.overlay) {
-					this.closeModal();
-					console.log('close');
-				}
-				if (element === this.arowLeft) {
-					index--;
-					if (index === -1) {
-						index = this.imgAdres.length - 1;
+				const callBack = () => {
+					if (element === this.closeBtn) {
+						this.closeModal();
+					} else
+					if (element === this.arowLeft) {
+						this.left();
+					} else
+					if (element === this.arowRight) {
+						this.right();
+					} else if (element === this.sertificateImage) {
+						return;
 					}
+				};
+				callBack();
 
-					this.sertificateImage.setAttribute('src', this.imgAdres[index--]);
-
-					console.log('left');
-
-				}
-
-				if (element === this.arowRight) {
-					index++;
-					if (index === this.imgAdres.length) {
-						index = 0;
-					}
-
-					this.sertificateImage.setAttribute('src', this.imgAdres[index]);
-					console.log('right');
-				}
-
-				this.openLogic(element, index);
 			}
 
 			addElementInHtml() {
@@ -100,7 +87,8 @@ const certificates = (paramObj) => {
 			}
 
 			elementsStyles() {
-				this.overlay.style.display = 'block';
+				this.overlay.style.cssText = 'display:block;z-index:11';
+
 				this.closeBtn.style.cssText = 'position:absolute;z-index:10;top:0;right:0;';
 				this.styler.textContent =
 					'.cert_table{' +
@@ -118,6 +106,7 @@ const certificates = (paramObj) => {
 					'height: 50px;' +
 					'border:3px solid white;' +
 					'border-radius:50%;' +
+					'cursor: pointer;' +
 					'color:white;' +
 					'padding:12px;' +
 					'font-size:45px;' +
@@ -151,23 +140,18 @@ const certificates = (paramObj) => {
 				this.addElementInHtml();
 			}
 
-
 			openLogic(element, index) {
 				this.elementOperator();
-
-				this.sertificateImage.setAttribute('src', this.imgAdres[index]);
+				currentCertificate = index;
+				this.renderModal(currentCertificate);
 
 				this.overlay.addEventListener('click', (e) => {
 					this.modalLogic(e.target, index);
-				});
 
+				});
 			}
 
-
-
-
 			addEvent(element, index) {
-
 				element.addEventListener('click', (e) => {
 					e.preventDefault();
 					this.openLogic(element, index);
@@ -180,13 +164,10 @@ const certificates = (paramObj) => {
 				});
 			}
 
-
 			start() {
 				this.foreacher();
 			}
 		}
-
-
 
 
 		const certificates = new Certificates();
