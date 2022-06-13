@@ -22,7 +22,12 @@ const certificates = (paramObj) => {
 			constructor() {
 				this.clickImages = document.querySelectorAll('.sertificate-document');
 				this.overlay = document.querySelector('.overlay');
-				this.imgAdres = ['/images/documents/original/document4.jpg', 'google'];
+
+				this.imgAdres = [
+					'/images/documents/original/document4.jpg',
+					'/images/documents/original/document4.1.jpg',
+					'/images/documents/original/document4.2.jpg'
+				];
 			}
 
 			// openModal() {
@@ -41,7 +46,14 @@ const certificates = (paramObj) => {
 			// }
 
 			addElementInHtml(element, index) {
-				// console.log(this.imgAdres[index]);
+				index = 0;
+
+				this.sertificateTable.append(this.arowLeft);
+				this.sertificateTable.append(this.sertificateImage);
+				this.sertificateTable.append(this.arowRight);
+
+
+				//console.log(this.imgAdres[index]);
 				this.sertificateImage.setAttribute('src', this.imgAdres[index]);
 
 
@@ -67,11 +79,22 @@ const certificates = (paramObj) => {
 
 
 			elementsStyles() {
-
+				this.overlay.style.display = 'block';
+				this.sertificateTable.style.cssText = 'display:flex;flex-direction:row;justify-content:space-between;align-content:center;margin:5% auto;z-index:10;width:950px;max-height:1200px;background-color:red;';
+				// this.sertificateImage
+				this.arowLeft.style.cssText = 'width:10px;height:10px;background-color:navy;';
+				this.arowRight.style.cssText = 'width:10px;height:10px;background-color:navy;';
+				// this.closeBtn
 
 			}
 
-			elementsAtributes() {}
+			elementsAtributes() {
+				// this.sertificateTable
+				// this.sertificateImage
+				// this.arowLeft
+				// this.arowRight
+				// this.closeBtn
+			}
 
 			elementsCreate() {
 				this.sertificateTable = document.createElement('div');
@@ -88,9 +111,12 @@ const certificates = (paramObj) => {
 
 			start() {
 				this.elementsCreate();
+				this.elementsAtributes();
+				this.elementsStyles();
+				//this.foreacher();
 
-
-				this.foreacher();
+				this.overlay.append(this.sertificateTable);
+				this.addElementInHtml();
 			}
 		}
 
