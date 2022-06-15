@@ -38,13 +38,26 @@ const calc = (paramObj) => {
 
 				if (e.target === this.square || e.target === this.type || e.target === this.typeMaterial) {
 
-					if (this.type.selectedOptions[0].value !== '--' && this.typeMaterial.selectedOptions[0].value !== '--') {
-						this.calcLogic();
+					if (this.type.selectedOptions[0].value !== '--' &&
+						this.typeMaterial.selectedOptions[0].value !== '--' ||
+						this.square.value == '') {
+
+
+						this.square.addEventListener('input', () => {
+
+							this.calcLogic();
+						});
+
+
 					}
 				}
 			}
 
 			addEvent() {
+
+
+
+
 
 				try {
 					this.calcContainer.children[0].addEventListener('click', (e) => {

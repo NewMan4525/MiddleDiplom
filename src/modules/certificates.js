@@ -18,9 +18,9 @@ const certificates = (paramObj) => {
 
 				this.overlay.style.opacity = '1';
 				this.imgAdres = [
-					'/images/documents/original/document4.jpg',
-					'/images/documents/original/document4.1.jpg',
-					'/images/documents/original/document4.2.jpg'
+					'./images/documents/original/document4.jpg',
+					'./images/documents/original/document4.1.jpg',
+					'./images/documents/original/document4.2.jpg'
 				];
 			}
 

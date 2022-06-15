@@ -137,7 +137,7 @@ const timerParams = new TimerOptions(
 	'count_2',
 	'count_3',
 	'count_4',
-	'13.june2022, 21:00'
+	'15.jule2022, 21:00'
 );
 
 

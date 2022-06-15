@@ -58,17 +58,40 @@ const sendForm = (paramObj) => {
 				];
 
 				if (element.classList.contains('btn-form')) {
+
+
+
 					currentFormInputsModal = examinationOption[0];
 				} else {
 					currentFormInputsModal = examinationOption[1];
 				}
 
 
-
-
 				if (currentFormInputsModal[0].value.length > 1 && currentFormInputsModal[1].value.length > 10) {
 					this.data.name = currentFormInputsModal[0].value;
 					this.data.phone = currentFormInputsModal[1].value;
+					element.textContent = 'ok!';
+
+					if (element.closest('.header-modal') !== null) {
+
+						setTimeout(() => {
+							element.textContent = 'СВЯЖМТЕСЬ СО МНОЙ!';
+						}, 1500);
+
+					} else if (element.closest('.services-modal') !== null) {
+
+						setTimeout(() => {
+							element.textContent = 'ВЫЗВАТЬ ЗАМЕРЩИКА!';
+						}, 1500);
+
+					} else if (element.closest('.order') !== null) {
+
+						setTimeout(() => {
+							element.textContent = 'ПОЛУЧИТЬ СКИДКУ!';
+						}, 1500);
+					}
+
+
 					if (this.total === null) {
 						this.data.total = 0;
 					} else
@@ -80,7 +103,7 @@ const sendForm = (paramObj) => {
 					this.sendData(this.data);
 
 				} else {
-					console.log('xyz');
+
 				}
 			}
 
