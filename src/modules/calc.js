@@ -27,26 +27,39 @@ const calc = (paramObj) => {
 
 			calcLogic() {
 
+
 				this.total.value = Math.ceil(
 					this.square.value *
 					this.type.selectedOptions[0].value *
 					this.typeMaterial.selectedOptions[0].value);
 
+
+
+
+
+
+
 			}
-
+			// || this.square.value !== ''
 			premission(e) {
-
-				if (e.target === this.square || e.target === this.type || e.target === this.typeMaterial) {
-
-					if (this.type.selectedOptions[0].value !== '--' &&
-						this.typeMaterial.selectedOptions[0].value !== '--' ||
-						this.square.value == '') {
+				// console.log(e.target === calc.type);
 
 
-						this.square.addEventListener('input', () => {
 
-							this.calcLogic();
-						});
+				if (e.target === calc.square || e.target === calc.type || e.target === calc.typeMaterial) {
+
+					if (calc.type.selectedOptions[0].value !== '--' &&
+						calc.typeMaterial.selectedOptions[0].value !== '--') {
+
+						calc.calcLogic();
+
+
+
+
+						// this.square.addEventListener('blur', () => {
+
+
+						// });
 
 
 					}
@@ -60,10 +73,19 @@ const calc = (paramObj) => {
 
 
 				try {
-					this.calcContainer.children[0].addEventListener('click', (e) => {
 
-						this.premission(e);
-					});
+					this.type.addEventListener('change', this.premission);
+					this.typeMaterial.addEventListener('change', this.premission);
+					this.square.addEventListener('blur', this.premission);
+
+
+
+
+
+					// this.calcContainer.children[0].addEventListener('click', (e) => {
+
+					// 	this.premission(e);
+					// });
 				} catch (err) {
 					// all elements from this code dist in balkony.html
 				}
