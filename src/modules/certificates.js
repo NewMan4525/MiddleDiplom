@@ -88,7 +88,7 @@ const certificates = (paramObj) => {
 			elementsStyles() {
 				this.overlay.style.cssText = 'display:block;z-index:11';
 
-				this.closeBtn.style.cssText = 'position:absolute;z-index:10;top:0;right:0;';
+
 
 				this.styler.textContent =
 					'.cert_table{' +
@@ -97,10 +97,10 @@ const certificates = (paramObj) => {
 					'flex-direction:row;' +
 					'justify-content:space-between;' +
 					'align-items:center;' +
-					'margin:15% auto;' +
+					'margin:10% auto;' +
 					'z-index:10;' +
-					'height:870px;' +
-					'width:700px;}' +
+					'height:80%;' +
+					'max-width:75%;}' +
 
 
 					'.cert_manager{' +
@@ -115,7 +115,8 @@ const certificates = (paramObj) => {
 					'font-size:45px;' +
 					'text-align:center;' +
 					'align-content:center;';
-				this.sertificateImage.style.cssText = 'position:relative; max-height:800px';
+				this.sertificateImage.style.cssText = 'position:relative; max-height:100%';
+				this.closeBtn.style.cssText = 'position:absolute;z-index:10;top:0;right:0;';
 			}
 
 			elementsAtributes() {
